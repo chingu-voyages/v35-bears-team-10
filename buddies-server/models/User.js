@@ -23,10 +23,14 @@ const UserSchema = new mongoose.Schema({
         type: String,
         default: ""
     },
-    favorite: {
+    followers: {
         type: Array,
-        default: []
-    },
+        default: [],
+      },
+      followings: {
+        type: Array,
+        default: [],
+      },
     isAdmin: {
         type: Boolean,
         default: false,
@@ -40,7 +44,7 @@ const UserSchema = new mongoose.Schema({
     },
     activity:{
         type:String,
-
+        enum:[1,2,3,4,5,6]
     },
    
 },
