@@ -42,9 +42,9 @@ const UserSchema = new mongoose.Schema({
     location:{
         type:String,
     },
-    activity:{
+    mood:{
         type:String,
-        enum:[1,2,3,4,5,6]
+        enum:['drink','talk','walk','sports','coffee','party','boardgames', 'videogames']
     },
    
 },
