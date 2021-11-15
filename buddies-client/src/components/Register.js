@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
@@ -28,9 +29,26 @@ function Register() {
     });
   };
 
-  const handleSubmit = (data) => {
-    console.log(JSON.stringify(data, null, 2));
-  };
+  const [serverState, setServerState] = useState();
+      const handleServerResponse = (ok, msg) => {
+        setServerState({ok, msg});
+      };
+      const handleSubmit = (values, actions) => {
+        axios({
+          method: "POST",
+          url: "http://localhost:8000/api/auth/register",
+          data: values
+        })
+          .then(response => {
+            actions.setSubmitting(false);
+            actions.resetForm();
+            handleServerResponse(true, "You are registered");
+          })
+          .catch(error => {
+            actions.setSubmitting(false);
+            handleServerResponse(false, error.response.data.error);
+          });
+      };
 
   return (
     <div className="row justify-content-center mt-5">
@@ -47,7 +65,7 @@ function Register() {
                 <label htmlFor="username" className="form-label ">
                   Username
                 </label>
-                <Field name="username" type="text" className="form-control" />
+                <Field name="username" type="text" className="form-control"  />
                 <ErrorMessage
                   name="username"
                   component="div"
@@ -75,6 +93,7 @@ function Register() {
                   name="password"
                   type="password"
                   className="form-control"
+                 
                 />
                 <ErrorMessage
                   name="password"
@@ -108,7 +127,13 @@ function Register() {
                 >
                   Register
                 </button>
+               
               </div>
+              {serverState && (
+                  <p className={!serverState.ok ? "errorMsg" : ""}>
+                    {serverState.msg}
+                  </p>
+                )}
             </Form>
           )}
         </Formik>
