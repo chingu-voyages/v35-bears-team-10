@@ -16,9 +16,6 @@ router.post('/register', celebrate({
     password: Joi.string().min(6).max(40).required(), 
     confirmPassword:Joi.string().required().valid(Joi.ref('password')),
   }),
-  query: {
-    token: Joi.string().token().required() 
-  }
 }), async (req, res) => {
   try {
     // password generatorno

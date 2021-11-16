@@ -38,13 +38,16 @@ function Register() {
           method: "POST",
           url: "http://localhost:8000/api/auth/register",
           data: values
+          
         })
           .then(response => {
+            
             actions.setSubmitting(false);
             actions.resetForm();
             handleServerResponse(true, "You are registered");
           })
           .catch(error => {
+            
             actions.setSubmitting(false);
             handleServerResponse(false, error.response.data.error);
           });
@@ -127,13 +130,12 @@ function Register() {
                 >
                   Register
                 </button>
-               
-              </div>
-              {serverState && (
+                {serverState && (
                   <p className={!serverState.ok ? "errorMsg" : ""}>
                     {serverState.msg}
                   </p>
                 )}
+              </div>
             </Form>
           )}
         </Formik>
