@@ -1,12 +1,26 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const bcrypt = require("bcrypt");
-//Register
-router.post("/register", async (req, res) => {
+const express = require('express');
+const BodyParser = require('body-parser');
+const { celebrate, Joi, errors, Segments } = require('celebrate');
+
+const app = express();
+app.use(BodyParser.json());
+//Register9
+
+router.post('/register', celebrate({
+  body: Joi.object().keys({
+    username: Joi.string().min(4).max(20).required(), 
+    email: Joi.string().lowercase().email(), 
+    password: Joi.string().min(6).max(40).required(), 
+    confirmPassword:Joi.string().required().valid(Joi.ref('password')),
+  }),
+}), async (req, res) => {
   try {
-    // password generator
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    // password generatorno
+    const salt = await  bcrypt.genSalt(10);
+    const hashedPassword = await  bcrypt.hash(req.body.password, salt);
 
     // create new users
     const newUser = new User({

@@ -1,0 +1,151 @@
+@media only screen and (device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3) {
+}
+* {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+/* Home.js CSS */
+
+.btn {
+  position: absolute;
+  width: 325px;
+  height: 60px;
+  left: 24px;
+  top: 677px;
+  background: linear-gradient(
+    181.42deg,
+    rgba(250, 182, 7, 0.71) 30.45%,
+    rgba(255, 160, 18, 0.6177) 170.81%,
+    rgba(255, 153, 0, 0.596) 132.63%
+  );
+  border-radius: 12px;
+}
+
+img {
+  position: absolute;
+  width: 311.99px;
+  height: 230px;
+  left: 30px;
+  top: 176px;
+}
+.title-home {
+  position: absolute;
+  width: 298px;
+  height: 28px;
+  left: 37px;
+  top: 429px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 16.8904px;
+  line-height: 25px;
+
+  color: rgba(0, 0, 0, 0.71);
+
+  opacity: 0.78;
+}
+
+.desc-home {
+  position: absolute;
+  width: 280px;
+  height: 104px;
+  left: 46px;
+  top: 489px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 214%;
+
+  text-align: center;
+color: #000000;
+  opacity: 0.73;
+}
+
+.design {
+  margin-left: 0;
+}
+
+/* register.js */
+.text-center{
+  position: absolute;
+width: 214px;
+height: 40px;
+left: 80px;
+top: 226px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 18px;
+line-height: 214%;
+/* or 39px */
+
+text-align: center;
+
+color: #000000;
+
+opacity: 0.82;
+}
+.haveAccount {
+  position: absolute;
+  width: 267px;
+  height: 16px;
+  left: 50px;
+  top: 747px;
+
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 115.69%;
+  /* or 16px */
+
+  text-align: center;
+  letter-spacing: 0.06em;
+
+  color: #000000;
+}
+.account {
+  font-family: Poppins;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 115.69%;
+ 
+ text-align: center;
+  letter-spacing: 0.06em;
+color: #000000;
+}
+
+.desc-register{
+  position: absolute;
+width: 209px;
+height: 31px;
+left: 70px;
+top: 266px;
+
+font-family: Poppins;
+font-style: normal;
+font-weight: 500;
+font-size: 14px;
+line-height: 214%;
+/* or 30px */
+
+text-align: center;
+
+color: rgba(0, 0, 0, 0.72);
+
+
+}
+
+form{
+  padding-top:160px !important;
+}
+
+.styleForm{
+  width: 325px !important;
+}
