@@ -49,7 +49,7 @@ function Register() {
           .catch(error => {
             
             actions.setSubmitting(false);
-            handleServerResponse(false, error.response.data.error);
+            handleServerResponse(false, error+"");
           });
       };
 
