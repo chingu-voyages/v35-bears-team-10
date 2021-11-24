@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-
+import { useNavigate } from 'react-router-dom';
 function Register() {
   const initialValues = {
     username: "",
@@ -10,6 +10,9 @@ function Register() {
     password: "",
     confirmPassword: "",
   };
+
+  const navigate = useNavigate()
+
   const validationSchema = () => {
     return Yup.object().shape({
       username: Yup.string()
@@ -41,7 +44,7 @@ function Register() {
           
         })
           .then(response => {
-            
+            navigate.push("/login");
             actions.setSubmitting(false);
             actions.resetForm();
             handleServerResponse(true, "You are registered");
@@ -136,7 +139,10 @@ function Register() {
                 >
                   Register
                 </button>
-                <div className="haveAccount"><p className="account">Already have an account ?</p><p className="singOrange">Sign In</p></div>
+                <div className="haveAccount">
+                  <p className="text-1">
+                    <span className="span0">Already have an account ?</span>
+                    <span className="span1">Sign in</span></p></div>
                 {serverState && (
                   <p className={!serverState.ok ? "errorMsg" : ""}>
                     {serverState.msg}

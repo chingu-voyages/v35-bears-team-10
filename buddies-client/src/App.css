@@ -143,9 +143,38 @@ color: rgba(0, 0, 0, 0.72);
 }
 
 form{
-  padding-top:160px !important;
+  padding-top:150px !important;
+
 }
 
 .styleForm{
-  width: 325px !important;
+  width: 325px;
 }
+
+.text-1{
+  
+  letter-spacing: 0.84px;
+  line-height: 16.2px;
+  min-height: 16px;
+  min-width: 267px;
+  text-align: center;
+  white-space: nowrap;
+}
+.span0{
+  color: var(--black);
+  font-weight: 400;
+  letter-spacing: 0.12px;
+  font-family: "Poppins";
+}
+
+.span1{
+  color:#fbc951;
+  font-weight: 700;
+  letter-spacing: 0,12px;
+  font-family: "Poppins";
+  margin-left: 4px !important;
+}
+#field{
+width: 325px!important;
+}
+
