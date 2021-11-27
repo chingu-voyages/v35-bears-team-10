@@ -1,5 +1,16 @@
 import { useRef, useState, useEffect } from "react";
+import Marker from "./marker";
 import mapboxgl from "!mapbox-gl"; // eslint-disable-line import/no-webpack-loader-syntax
+
+const events = [
+  {
+    name: "Event 1",
+    date: "2021-12-31",
+    location: ["80.4039", "6.6886"],
+    activity: "party",
+    userId: "1",
+  },
+];
 
 mapboxgl.accessToken =
   "pk.eyJ1Ijoic2hhZnJhemkiLCJhIjoiY2t3Y2V2cDd0MG9jZzJ1cWt0cTN4NjRrZyJ9.bAyu7dLgQogqZfn4SnzweQ";
@@ -26,7 +37,7 @@ export default function Map() {
           enableHighAccuracy: true,
         },
         // When active the map will receive updates to the device's location as it changes.
-        trackUserLocation: true,
+        // trackUserLocation: true,
         // Draw an arrow next to the location dot to indicate which direction the device is heading.
         showUserHeading: true,
       })

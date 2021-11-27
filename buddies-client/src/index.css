@@ -29,3 +29,14 @@ code {
   margin: 12px;
   border-radius: 4px;
 }
+
+.marker {
+  width: 20px;
+  height: 20px;
+  display: block;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  padding: 0;
+  background-size: 100%;
+}
