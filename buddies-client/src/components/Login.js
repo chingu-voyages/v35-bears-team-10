@@ -1,5 +1,5 @@
 import { useContext, useRef } from "react";
-import { useNavigate } from "react-router-dom";
+
 import { loginCall } from "../context/apiCalls";
 import { AuthContext } from "../context/AuthContext";
 
@@ -7,13 +7,14 @@ export default function Login() {
   const email = useRef();
   const password = useRef();
   const { user, isFetching, dispatch } = useContext(AuthContext);
-  const navigate = useNavigate();
+  
   const handleClick = (e) => {
     e.preventDefault();
     loginCall(
       { email: email.current.value, password: password.current.value },
       dispatch
     );
+     
   };
 
   console.log(user);
@@ -42,9 +43,7 @@ export default function Login() {
               ref={password}
             />
             <button
-              onClick={() => {
-                navigate("/profile");
-              }}
+             
               className="loginButton"
               type="submit"
               disabled={isFetching}
