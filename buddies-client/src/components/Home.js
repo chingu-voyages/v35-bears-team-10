@@ -10,7 +10,7 @@ function Home() {
 </svg>
 
 
-            <img src="/num59282011.png" alt="buddiesImg" />
+            
            <h2 className="title-home">Find social activities with buddies</h2>
            <p className="desc-home">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ac fermentum vulputate lobortis velit eu fringilla dictum massa.</p>
            <div >
