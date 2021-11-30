@@ -1,5 +1,5 @@
 import { useState, useMemo } from "react";
-import ReactMapGL, { GeolocateControl, Marker } from "react-map-gl";
+import ReactMapGL, { GeolocateControl, Marker, Popup } from "react-map-gl";
 
 const events = [
   {
