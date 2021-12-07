@@ -58,6 +58,9 @@ export default function Map() {
     zoom: 9,
   });
 
+  const [showPopup, togglePopup] = useState(false);
+  const [currentEvent, setCurrentEvent] = useState(null);
+
   const markers = useMemo(
     () =>
       events.map((event) => (
@@ -72,7 +75,8 @@ export default function Map() {
             width="40px"
             height="40px"
             onClick={() => {
-              console.log("hello");
+              setCurrentEvent(event);
+              togglePopup(true);
             }}
           />
         </Marker>
@@ -95,6 +99,22 @@ export default function Map() {
         trackUserLocation={true}
         auto
       />
+      {showPopup && (
+        <Popup
+          latitude={currentEvent.location[1]}
+          longitude={currentEvent.location[0]}
+          closeButton={true}
+          closeOnClick={false}
+          onClose={() => togglePopup(false)}
+          offsetTop={0}
+        >
+          <div>
+            <p>{currentEvent.name}</p>
+            <p>{currentEvent.date}</p>
+            <p>{currentEvent.activity}</p>
+          </div>
+        </Popup>
+      )}
       {markers}
     </ReactMapGL>
   );
