@@ -1,14 +1,12 @@
-import { useContext, useRef } from "react";
+import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { AuthContext } from "../context/AuthContext";
 import axios from "axios";
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
   const navigate = useNavigate();
-  const { isFetching } = useContext(AuthContext);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -27,7 +25,7 @@ export default function Login() {
   };
 
   return (
-    <div className="login">
+    <div className="bg-gray-200">
       <div className="loginWrapper">
         <div className="loginLeft">
           <h3 className="loginLogo">Welcome to Buddies</h3>
@@ -50,7 +48,7 @@ export default function Login() {
               className="loginInput"
               ref={password}
             />
-            <button className="loginButton" type="submit" disabled={isFetching}>
+            <button className="loginButton" type="submit">
               Log in
             </button>
           </form>
