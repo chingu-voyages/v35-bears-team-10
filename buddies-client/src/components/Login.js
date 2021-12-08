@@ -1,23 +1,31 @@
 import { useContext, useRef } from "react";
+import { useNavigate } from "react-router-dom";
 
-import { loginCall } from "../context/apiCalls";
 import { AuthContext } from "../context/AuthContext";
+import axios from "axios";
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
-  const { user, isFetching, dispatch } = useContext(AuthContext);
-  
-  const handleClick = (e) => {
-    e.preventDefault();
-    loginCall(
-      { email: email.current.value, password: password.current.value },
-      dispatch
-    );
-     
+  const navigate = useNavigate();
+  const { isFetching } = useContext(AuthContext);
+
+  const handleLogin = (event) => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:8000/api/auth/login", {
+        email: email.current.value,
+        password: password.current.value,
+      })
+      .then((response) => {
+        localStorage.setItem("user", response.data._id);
+        navigate("/profile");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
-  console.log(user);
   return (
     <div className="login">
       <div className="loginWrapper">
@@ -26,7 +34,7 @@ export default function Login() {
           <span className="loginDesc">Find new activities everywhere!</span>
         </div>
         <div className="loginRight">
-          <form className="loginBox" onSubmit={handleClick}>
+          <form className="loginBox" onSubmit={handleLogin}>
             <input
               placeholder="Email"
               type="email"
@@ -42,12 +50,7 @@ export default function Login() {
               className="loginInput"
               ref={password}
             />
-            <button
-             
-              className="loginButton"
-              type="submit"
-              disabled={isFetching}
-            >
+            <button className="loginButton" type="submit" disabled={isFetching}>
               Log in
             </button>
           </form>
