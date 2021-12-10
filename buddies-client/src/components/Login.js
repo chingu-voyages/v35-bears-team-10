@@ -2,6 +2,8 @@ import { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../context/user-context";
+import RegisterImg from "./RegisterImg";
+import { Link } from "react-router-dom";
 import axios from "axios";
 
 export default function Login() {
@@ -28,37 +30,36 @@ export default function Login() {
   };
 
   return (
-    <div className="bg-gray-100 h-screen flex flex-col justify-center items-center">
-      <div className="">
-        <div className="flex flex-col justify-center items-center">
-          <h1 className="text-xl font-bold">Welcome to Buddies</h1>
-          <h3 className="text-lg mt-4">Find new activities everywhere!</h3>
-        </div>
-        <div className="flex flex-col mt-3">
-          <form className="flex flex-col" onSubmit={handleLogin}>
-            <input
-              placeholder="Email"
-              type="email"
-              required
-              className="w-full bg-white px-4 py-2 rounded mt-2"
-              ref={email}
-            />
-            <input
-              placeholder="Password"
-              type="password"
-              required
-              minLength="6"
-              className="w-full bg-white px-4 py-2 rounded mt-2"
-              ref={password}
-            />
-            <button
-              className="font-bold hover:bg-yellow-300 bg-yellow-400 w-full mt-4 text-white rounded py-2"
-              type="submit"
-            >
-              Log in
-            </button>
-          </form>
-        </div>
+    <div className="registerImg">
+      <RegisterImg />
+      <div className="login">
+        <h3 className="loginTitle">Hello Again!</h3>
+        <p className="loginText">Welcome Back</p>
+        <form className="loginBox" onSubmit={handleLogin}>
+          <input
+            placeholder="Email"
+            type="email"
+            required
+            className="loginInput"
+            ref={email}
+          />
+          <input
+            placeholder="Password"
+            type="password"
+            required
+            minLength="6"
+            className="loginInput"
+            ref={password}
+          />
+          <button className="loginButton" type="submit" >
+            Log in
+          </button>
+        </form>
+
+        <span className="span-0">Don't have an account?</span>
+        <Link style={{ textDecoration: "none" }} to="/register">
+          <span className="span-1">Register</span>
+        </Link>
       </div>
     </div>
   );

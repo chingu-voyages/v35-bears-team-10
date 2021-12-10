@@ -16,7 +16,7 @@ router.post(
       username: Joi.string().min(4).max(20).required(),
       email: Joi.string().lowercase().email(),
       password: Joi.string().min(6).max(40).required(),
-      confirmPassword: Joi.string().required().valid(Joi.ref("password")),
+    
     }),
   }),
   async (req, res) => {
