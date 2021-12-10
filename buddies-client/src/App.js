@@ -7,14 +7,12 @@ import Profile from "./components/Profile";
 
 function App() {
   return (
-    <div className="container-fluid">
-      <Routes>
-        <Route path="/" element={<Home />} exact />
-        <Route path="/register" element={<Register />} />
-        <Route path="/login" element={<Login />} />
-        <Route path="/profile" element={<Profile />} />
-      </Routes>
-    </div>
+    <Routes>
+      <Route path="/" element={<Home />} exact />
+      <Route path="/register" element={<Register />} />
+      <Route path="/login" element={<Login />} />
+      <Route path="/profile" element={<Profile />} />
+    </Routes>
   );
 }
 
