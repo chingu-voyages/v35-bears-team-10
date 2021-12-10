@@ -201,7 +201,7 @@
   border-radius: 2px;
   margin-bottom: 10px;
 }
-#loginInput{
+#loginInput {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -227,7 +227,7 @@
   color: #ffc238;
   font-weight: bold;
   margin-left: 4px;
-  text-decoration: none!important;
+  text-decoration: none !important;
 }
 
 .loginTitle {
@@ -251,27 +251,46 @@
   color: #5c5a53;
 }
 
-.iconEmail{
- flex-direction: row; 
-  justify-content:  'center';
+.iconEmail {
+  flex-direction: row;
+  justify-content: "center";
   align-items: center;
   background-color: #fff;
   border-width: 0.5;
-  border-color: #000 ;
+  border-color: #000;
   height: 40;
   border-radius: 5;
-  margin:10;
+  margin: 10;
 
-width: 24px;
-height: 24px;
-left: 26px;
-top: 18px;
+  width: 24px;
+  height: 24px;
+  left: 26px;
+  top: 18px;
 
-opacity: 0.3;
+  opacity: 0.3;
 }
 
-.text-danger{
+.text-danger {
   margin-top: -12px;
-  color: #ffc238!important;
+  color: #ffc238 !important;
   font-weight: 500;
 }
+
+.notFound {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.profile{
+  
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    align-items: stretch;
+    align-content: stretch;
+  }
