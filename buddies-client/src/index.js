@@ -1,6 +1,7 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import React from "react";
 import { BrowserRouter } from "react-router-dom";
+import { UserContextProvider } from "./context/user-context";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
@@ -9,7 +10,9 @@ import reportWebVitals from "./reportWebVitals";
 ReactDOM.render(
   <BrowserRouter>
     <React.StrictMode>
-      <App />
+      <UserContextProvider>
+        <App />
+      </UserContextProvider>
     </React.StrictMode>
   </BrowserRouter>,
   document.getElementById("root")

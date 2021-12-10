@@ -1,6 +1,7 @@
 import "./App.css";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+
 import Register from "./components/Register";
 import Home from "./components/Home";
 import Login from "./components/Login";
@@ -11,6 +12,7 @@ function App() {
   return (
     <div>
       <ToastContainer limit={2} position="top-center" />
+
       <Routes>
         <Route path="/" element={<Home />} exact />
         <Route path="/register" element={<Register />} />

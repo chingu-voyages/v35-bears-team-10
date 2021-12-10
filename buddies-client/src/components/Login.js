@@ -1,12 +1,14 @@
-import { useRef } from "react";
+import { useRef, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import { UserContext } from "../context/user-context";
 import axios from "axios";
 
 export default function Login() {
   const email = useRef();
   const password = useRef();
   const navigate = useNavigate();
+  const { setUser, user } = useContext(UserContext);
 
   const handleLogin = (event) => {
     event.preventDefault();
@@ -16,7 +18,8 @@ export default function Login() {
         password: password.current.value,
       })
       .then((response) => {
-        localStorage.setItem("user", response.data._id);
+        setUser(response.data);
+        localStorage.setItem("user", response.data);
         navigate("/profile");
       })
       .catch((error) => {
