@@ -1,6 +1,6 @@
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
+import { toast } from "react-toastify";
 import axios from "axios";
 
 export default function Login() {
@@ -20,7 +20,7 @@ export default function Login() {
         navigate("/profile");
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("Wrong credentials");
       });
   };
 
