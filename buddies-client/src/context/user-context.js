@@ -14,8 +14,6 @@ function UserContextProvider(props) {
     }
   }, [user]);
 
-  console.log(user);
-
   return (
     <UserContext.Provider
       value={{

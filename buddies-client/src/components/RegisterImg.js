@@ -3,7 +3,7 @@ import React from "react";
 const RegisterImg = () => {
   return (
     <svg
-        className="loginImg"
+      className="loginImg"
       width="875"
       height="720"
       viewBox="0 0 875 720"
