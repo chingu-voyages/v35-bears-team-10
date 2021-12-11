@@ -12,7 +12,7 @@ function Profile() {
     return <Navigate to="/login" state={{ from: location }} />;
   }
   return (
-    <div className="div-6">
+    <div className="">
       <Navbar />
       <div className="profile">
         <div className="flex flex-col md:flex-row w-full">
