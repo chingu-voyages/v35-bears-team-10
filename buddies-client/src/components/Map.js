@@ -1,5 +1,8 @@
-import { useState, useMemo } from "react";
-import ReactMapGL, { GeolocateControl, Marker, Popup } from "react-map-gl";
+import { useState, useMemo, useRef, useCallback } from "react";
+import MapGL, { GeolocateControl, Marker, Popup } from "react-map-gl";
+import Geocoder from "react-map-gl-geocoder";
+
+import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 
 const events = [
   {
@@ -58,6 +61,8 @@ export default function Map() {
     zoom: 9,
   });
 
+  const mapRef = useRef();
+
   const [showPopup, togglePopup] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(null);
 
@@ -85,7 +90,8 @@ export default function Map() {
   );
 
   return (
-    <ReactMapGL
+    <MapGL
+      ref={mapRef}
       {...viewport}
       onViewportChange={(viewport) => setViewPort(viewport)}
       mapboxApiAccessToken="pk.eyJ1Ijoic2hhZnJhemkiLCJhIjoiY2t3Y2V2cDd0MG9jZzJ1cWt0cTN4NjRrZyJ9.bAyu7dLgQogqZfn4SnzweQ"
@@ -93,6 +99,12 @@ export default function Map() {
       width="100%"
       height="100vh"
     >
+      <Geocoder
+        mapRef={mapRef}
+        onViewportChange={(viewport) => setViewPort(viewport)}
+        mapboxApiAccessToken="pk.eyJ1Ijoic2hhZnJhemkiLCJhIjoiY2t3Y2V2cDd0MG9jZzJ1cWt0cTN4NjRrZyJ9.bAyu7dLgQogqZfn4SnzweQ"
+        position="top-left"
+      />
       <GeolocateControl
         style={geolocateControlStyle}
         positionOptions={{ enableHighAccuracy: true }}
@@ -116,6 +128,6 @@ export default function Map() {
         </Popup>
       )}
       {markers}
-    </ReactMapGL>
+    </MapGL>
   );
 }
