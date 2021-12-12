@@ -66,6 +66,23 @@ export default function Map() {
   const [showPopup, togglePopup] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(null);
 
+  const handleViewportChange = useCallback(
+    (newViewport) => setViewPort(newViewport),
+    []
+  );
+
+  const handleGeocoderViewportChange = useCallback(
+    (newViewport) => {
+      const geocoderDefaultOverrides = { transitionDuration: 1000 };
+
+      return handleViewportChange({
+        ...newViewport,
+        ...geocoderDefaultOverrides,
+      });
+    },
+    [handleViewportChange]
+  );
+
   const markers = useMemo(
     () =>
       events.map((event) => (
@@ -101,7 +118,7 @@ export default function Map() {
     >
       <Geocoder
         mapRef={mapRef}
-        onViewportChange={(viewport) => setViewPort(viewport)}
+        onViewportChange={handleGeocoderViewportChange}
         mapboxApiAccessToken="pk.eyJ1Ijoic2hhZnJhemkiLCJhIjoiY2t3Y2V2cDd0MG9jZzJ1cWt0cTN4NjRrZyJ9.bAyu7dLgQogqZfn4SnzweQ"
         position="top-left"
       />
