@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import axios from "axios";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
-import RegisterImg from "./RegisterImg";
+import RegisterImg from "../images/registerImg.jpg";
 import { Link } from "react-router-dom";
 
 function Register() {
@@ -49,9 +49,13 @@ function Register() {
   };
 
   return (
-    <div className="registerImg">
-      <RegisterImg />
-      <div className="login-1">
+    <div className="flex flex-col md:flex-row justify-center items-center h-screen">
+      <img
+        src={RegisterImg}
+        alt="hiking"
+        className="w-1/2 h-screen hidden md:block"
+      />
+      <div className="flex flex-col justify-center items-center w-2/3 h-2/3">
         <h3 className="loginTitle">Welcome!</h3>
         <p className="loginText">Sign up for free</p>
         <Formik
@@ -121,7 +125,7 @@ function Register() {
           )}
         </Formik>
         <span className="span-0">Already have an account?</span>
-        <Link  style={{ textDecoration: 'none' }}to="/login">
+        <Link style={{ textDecoration: "none" }} to="/login">
           <span className="span-1">Login</span>
         </Link>
       </div>

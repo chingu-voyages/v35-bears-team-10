@@ -14,7 +14,11 @@ function UserContextProvider(props) {
     }
   }, [user]);
 
-  console.log(user);
+  const handleSignOut = () => {
+    localStorage.removeItem("user");
+    setUser(null);
+    setIsLoggedIn(false);
+  };
 
   return (
     <UserContext.Provider
@@ -23,6 +27,7 @@ function UserContextProvider(props) {
         setUser,
         isLoggedIn,
         setIsLoggedIn,
+        handleSignOut,
       }}
     >
       {props.children}
