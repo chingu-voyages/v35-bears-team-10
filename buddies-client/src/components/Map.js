@@ -116,6 +116,7 @@ export default function Map() {
       longitude: viewport.longitude,
       latitude: viewport.latitude,
     });
+    setShowEventPinDropPopup(false);
   };
 
   const markers = useMemo(
@@ -202,8 +203,21 @@ export default function Map() {
             closeOnClick={false}
             onClose={() => setShowEventPinDropPopup(false)}
             offsetTop={-20}
+            offsetLeft={10}
           >
-            <div>Confirm event location?</div>
+            <div>
+              <p>Confirm event location?</p>
+              <div>
+                <button>YES</button>
+                <button
+                  onClick={() => {
+                    setShowEventPinDropPopup(false);
+                  }}
+                >
+                  DISMISS
+                </button>
+              </div>
+            </div>
           </Popup>
         )}
         {markers}
