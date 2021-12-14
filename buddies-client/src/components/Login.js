@@ -22,7 +22,7 @@ export default function Login() {
       .then((response) => {
         setUser(response.data);
         localStorage.setItem("user", response.data);
-        navigate("/profile");
+        navigate("/map");
       })
       .catch((error) => {
         toast.error("Wrong credentials");

@@ -204,15 +204,17 @@ export default function Map() {
             onClose={() => setShowEventPinDropPopup(false)}
             offsetTop={-20}
             offsetLeft={10}
+            className="flex"
           >
-            <div>
-              <p>Confirm event location?</p>
-              <div>
-                <button>YES</button>
+            <div className="mt-3">
+              <p className="font-bold">Confirm event location?</p>
+              <div className="flex">
+                <button className="bg-blue-400 w-1/2">YES</button>
                 <button
                   onClick={() => {
                     setShowEventPinDropPopup(false);
                   }}
+                  className="bg-red-400 w-1/2"
                 >
                   DISMISS
                 </button>
