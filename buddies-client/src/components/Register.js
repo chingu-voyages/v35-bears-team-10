@@ -70,7 +70,7 @@ function Register() {
                 type="text"
                 className="form-control"
                 placeholder="Full Name"
-                id="loginInput"
+                // id="loginInput"
                 required
               />
               <ErrorMessage
@@ -84,7 +84,7 @@ function Register() {
                 type="email"
                 className="form-control"
                 placeholder="Email Adress "
-                id="loginInput"
+                // id="loginInput"
                 required
               />
               <ErrorMessage
