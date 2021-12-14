@@ -10,7 +10,9 @@ const morgan = require("morgan");
 const userRoute = require("./routes/users");
 const authRoute = require("./routes/auth");
 const eventRoute = require("./routes/event");
-
+const cors = require("cors");
+const bodyParser = require("body-parser");
+const yup = require("yup");
 dotenv.config();
 
 mongoose.connect(
@@ -39,6 +41,8 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "public")));
 
+app.use(cors(corsOptions));
+
 //middleware
 app.use(helmet());
 app.use(morgan("common"));
@@ -48,7 +52,7 @@ app.listen(8000, () => {
 app.use(bodyParser.json());
 app.use("/api/auth", authRoute);
 app.use("/api/users", userRoute);
-app.use("/api/events", eventRoute);
+app.use("/api/event", eventRoute);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
