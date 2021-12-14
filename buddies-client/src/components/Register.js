@@ -64,53 +64,49 @@ function Register() {
           onSubmit={handleSubmit}
         >
           {(formik) => (
-            <Form>
+            <Form className="w-full md:w-2/3">
               <Field
                 name="username"
                 type="text"
-                className="form-control"
-                placeholder="Full Name"
-                // id="loginInput"
+                className="w-full bg-gray-200 px-4 py-2 rounded mt-2"
+                placeholder="Username"
                 required
               />
               <ErrorMessage
                 name="username"
                 component="div"
-                className="text-danger"
+                className="text-red-500 text-sm mt-2"
               />
 
               <Field
                 name="email"
                 type="email"
-                className="form-control"
-                placeholder="Email Adress "
-                // id="loginInput"
+                className="w-full bg-gray-200 px-4 py-2 rounded mt-2"
+                placeholder="Email"
                 required
               />
               <ErrorMessage
                 name="email"
                 component="div"
-                className="text-danger"
+                className="text-red-500 text-sm mt-2"
               />
 
               <Field
                 placeholder="Password"
                 name="password"
                 type="password"
-                className="form-control"
-                id="loginInput"
+                className="w-full bg-gray-200 px-4 py-2 rounded mt-2"
                 required
               />
               <ErrorMessage
                 name="password"
                 component="div"
-                className="text-danger"
+                className="text-red-500 text-sm mt-2"
               />
 
               <button
                 type="submit"
-                className="loginButton"
-                style={{ backgroundColor: "#FFBC05", borderColor: "#FFBC05" }}
+                className="w-full bg-yellow-400 text-white font-bold px-4 py-2 rounded mt-4"
                 disabled={!(formik.isValid && formik.dirty)}
               >
                 Register

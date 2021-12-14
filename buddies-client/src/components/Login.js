@@ -39,12 +39,12 @@ export default function Login() {
       <div className="flex flex-col justify-center items-center w-2/3 h-2/3">
         <h3 className="loginTitle">Hello Again!</h3>
         <p className="loginText">Welcome Back</p>
-        <form className="loginBox" onSubmit={handleLogin}>
+        <form className="w-full md:w-2/3" onSubmit={handleLogin}>
           <input
             placeholder="Email"
             type="email"
             required
-            className="loginInput"
+            className="w-full bg-gray-200 px-4 py-2 rounded mt-2"
             ref={email}
           />
           <input
@@ -52,10 +52,13 @@ export default function Login() {
             type="password"
             required
             minLength="6"
-            className="loginInput"
+            className="w-full bg-gray-200 px-4 py-2 rounded mt-2"
             ref={password}
           />
-          <button className="loginButton" type="submit">
+          <button
+            className="w-full bg-yellow-400 text-white font-bold px-4 py-2 rounded mt-4"
+            type="submit"
+          >
             Log in
           </button>
         </form>
