@@ -67,6 +67,8 @@ export default function Map() {
 
   const mapRef = useRef();
 
+  const [isOpen, setIsOpen] = useState(false);
+
   const [showPopup, togglePopup] = useState(false);
   const [showEventPinDropPopup, setShowEventPinDropPopup] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(null);
@@ -146,8 +148,8 @@ export default function Map() {
 
   return (
     <div className="relative flex flex-col justify-center items-center">
-      <MapHeader handleDropPin={handleDropPin} />
-      <AddEventForm />
+      {!isOpen && <MapHeader handleDropPin={handleDropPin} />}
+      <AddEventForm isOpen={isOpen} />
       <MapGL
         ref={mapRef}
         {...viewport}
@@ -157,18 +159,20 @@ export default function Map() {
         width="100%"
         height="99vh"
       >
-        <Marker
-          longitude={marker.longitude}
-          latitude={marker.latitude}
-          offsetTop={-20}
-          offsetLeft={-10}
-          draggable
-          onDragStart={onMarkerDragStart}
-          onDrag={onMarkerDrag}
-          onDragEnd={onMarkerDragEnd}
-        >
-          <Pin size={30} />
-        </Marker>
+        {!isOpen && (
+          <Marker
+            longitude={marker.longitude}
+            latitude={marker.latitude}
+            offsetTop={-20}
+            offsetLeft={-10}
+            draggable
+            onDragStart={onMarkerDragStart}
+            onDrag={onMarkerDrag}
+            onDragEnd={onMarkerDragEnd}
+          >
+            <Pin size={30} />
+          </Marker>
+        )}
         <Geocoder
           mapRef={mapRef}
           onViewportChange={handleGeocoderViewportChange}
@@ -211,7 +215,15 @@ export default function Map() {
             <div className="mt-3">
               <p className="font-bold">Confirm event location?</p>
               <div className="flex">
-                <button className="bg-blue-400 w-1/2">YES</button>
+                <button
+                  className="bg-blue-400 w-1/2"
+                  onClick={() => {
+                    setIsOpen(true);
+                    setShowEventPinDropPopup(false);
+                  }}
+                >
+                  YES
+                </button>
                 <button
                   onClick={() => {
                     setShowEventPinDropPopup(false);
