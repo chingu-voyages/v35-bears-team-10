@@ -6,6 +6,7 @@ import Pin from "./Pin";
 
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import MapHeader from "./MapHeader";
+import AddEventForm from "./AddEventForm";
 
 const eventMarkers = [
   {
@@ -144,8 +145,9 @@ export default function Map() {
   );
 
   return (
-    <div className="relative">
+    <div className="relative flex flex-col justify-center items-center">
       <MapHeader handleDropPin={handleDropPin} />
+      <AddEventForm />
       <MapGL
         ref={mapRef}
         {...viewport}
