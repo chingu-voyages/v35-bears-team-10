@@ -144,7 +144,7 @@ export default function Map() {
   );
 
   return (
-    <div>
+    <div className="relative">
       <MapHeader handleDropPin={handleDropPin} />
       <MapGL
         ref={mapRef}
@@ -153,7 +153,7 @@ export default function Map() {
         mapboxApiAccessToken="pk.eyJ1Ijoic2hhZnJhemkiLCJhIjoiY2t3Y2V2cDd0MG9jZzJ1cWt0cTN4NjRrZyJ9.bAyu7dLgQogqZfn4SnzweQ"
         mapStyle="mapbox://styles/mapbox/streets-v11"
         width="100%"
-        height="100vh"
+        height="99vh"
       >
         <Marker
           longitude={marker.longitude}
