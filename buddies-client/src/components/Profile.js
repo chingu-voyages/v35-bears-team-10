@@ -5,7 +5,7 @@ import ProfileBgImg from "../images/profile-bg.png";
 import { UserContext } from "../context/user-context";
 
 function Profile() {
-  const { user, isLoggedIn } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   const location = useLocation();
 
   if (!user) {
