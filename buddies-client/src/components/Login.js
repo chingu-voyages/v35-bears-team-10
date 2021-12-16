@@ -1,5 +1,5 @@
 import { useRef, useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Navigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import { UserContext } from "../context/user-context";
 import HikingImg from "../images/hikingImg.jpg";
@@ -28,6 +28,10 @@ export default function Login() {
         toast.error("Wrong credentials");
       });
   };
+
+  if (user) {
+    return <Navigate to="/profile" />;
+  }
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center h-screen">

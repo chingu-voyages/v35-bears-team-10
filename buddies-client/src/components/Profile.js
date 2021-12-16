@@ -8,7 +8,7 @@ function Profile() {
   const { user, isLoggedIn } = useContext(UserContext);
   const location = useLocation();
 
-  if (!isLoggedIn) {
+  if (!user) {
     return <Navigate to="/login" state={{ from: location }} />;
   }
   return (
