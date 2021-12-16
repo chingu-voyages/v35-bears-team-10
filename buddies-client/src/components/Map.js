@@ -129,12 +129,13 @@ export default function Map() {
           key={event.name}
           longitude={event.location[0]}
           latitude={event.location[1]}
+          className="z-0 bg-blue-300 flex justify-center items-center px-2 py-2 rounded-full border-2 border-black"
         >
           <img
             src={`${event.activity}.png`}
             alt="party"
-            width="40px"
-            height="40px"
+            width="30px"
+            height="30px"
             onClick={() => {
               setCurrentEvent(event);
               togglePopup(true);
@@ -149,7 +150,7 @@ export default function Map() {
   return (
     <div className="relative flex flex-col justify-center items-center">
       {!isOpen && <MapHeader handleDropPin={handleDropPin} />}
-      <AddEventForm isOpen={isOpen} />
+      <AddEventForm isOpen={isOpen} setIsOpen={setIsOpen} />
       <MapGL
         ref={mapRef}
         {...viewport}
@@ -169,6 +170,7 @@ export default function Map() {
             onDragStart={onMarkerDragStart}
             onDrag={onMarkerDrag}
             onDragEnd={onMarkerDragEnd}
+            className="z-10"
           >
             <Pin size={30} />
           </Marker>
@@ -193,6 +195,7 @@ export default function Map() {
             closeOnClick={false}
             onClose={() => togglePopup(false)}
             offsetTop={0}
+            className="z-10"
           >
             <div>
               <p>{currentEvent.name}</p>
@@ -205,18 +208,18 @@ export default function Map() {
           <Popup
             latitude={marker.latitude}
             longitude={marker.longitude}
-            closeButton={true}
+            closeButton={false}
             closeOnClick={false}
             onClose={() => setShowEventPinDropPopup(false)}
             offsetTop={-20}
             offsetLeft={10}
-            className="flex"
+            className="flex rounded-md z-10"
           >
             <div className="mt-3">
               <p className="font-bold">Confirm event location?</p>
-              <div className="flex">
+              <div className="flex justify-around mt-3">
                 <button
-                  className="bg-blue-400 w-1/2"
+                  className="bg-blue-400 px-2 py-1 text-white font-bold rounded"
                   onClick={() => {
                     setIsOpen(true);
                     setShowEventPinDropPopup(false);
@@ -228,7 +231,7 @@ export default function Map() {
                   onClick={() => {
                     setShowEventPinDropPopup(false);
                   }}
-                  className="bg-red-400 w-1/2"
+                  className="bg-red-400 px-2 py-1 text-white font-bold rounded"
                 >
                   DISMISS
                 </button>
