@@ -12,6 +12,26 @@ export default function AddEventForm({ isOpen, setIsOpen }) {
     { type: "sport", isSelected: false },
   ]);
 
+  const getIndex = (arr, element) => {
+    return arr.indexOf(element);
+  };
+
+  const handleClick = (type) => {
+    setEventTypes((prev) => {
+      const index = getIndex(prev, type);
+      const newArr = prev.filter((element) => {
+        return prev.indexOf(element) !== index;
+      });
+      newArr.forEach((element) => {
+        return (element.isSelected = false);
+      });
+      newArr.splice(index, 0, { ...type, isSelected: true });
+      return newArr;
+    });
+
+    setFormEventType(type.type);
+  };
+
   return (
     <div
       className="z-10 absolute w-full md:w-1/3 px-3 py-4 flex flex-col justify-center items-center"
@@ -42,11 +62,14 @@ export default function AddEventForm({ isOpen, setIsOpen }) {
               <EventType
                 setFormEventType={setFormEventType}
                 eventType={eventType}
-                setEventTypes={setEventTypes}
+                key={eventType.type}
+                isSelected={eventType.isSelected}
+                handleClick={handleClick}
               />
             );
           })}
         </div>
+
         <input
           type="text"
           placeholder="Date"
