@@ -21,7 +21,7 @@ export default function Login() {
       })
       .then((response) => {
         setUser(response.data);
-        localStorage.setItem("user", response.data);
+        localStorage.setItem("user", JSON.stringify(response.data));
         navigate("/map");
       })
       .catch((error) => {

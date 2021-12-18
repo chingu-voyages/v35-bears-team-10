@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 const UserContext = React.createContext(null);
 
 function UserContextProvider(props) {
-  const [user, setUser] = useState(localStorage.getItem("user"));
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   useEffect(() => {
