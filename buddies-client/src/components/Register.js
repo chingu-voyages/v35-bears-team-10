@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import axios from "axios";
 import { Formik, Field, Form, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import RegisterImg from "../images/registerImg.jpg";
-import { Link } from "react-router-dom";
+import { Link, Navigate } from "react-router-dom";
+import { UserContext } from "../context/user-context";
 
 function Register() {
   const initialValues = {
@@ -11,6 +12,9 @@ function Register() {
     email: "",
     password: "",
   };
+
+  const { user } = useContext(UserContext);
+
   const validationSchema = () => {
     return Yup.object().shape({
       username: Yup.string()
@@ -47,6 +51,10 @@ function Register() {
         handleServerResponse(false, error + "");
       });
   };
+
+  if (user) {
+    return <Navigate to="/profile" />;
+  }
 
   return (
     <div className="flex flex-col md:flex-row justify-center items-center h-screen">

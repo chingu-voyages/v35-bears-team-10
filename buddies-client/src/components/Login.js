@@ -30,7 +30,7 @@ export default function Login() {
   };
 
   if (user) {
-    return <Navigate to="/profile" />;
+    return <Navigate to="/map" />;
   }
 
   return (
