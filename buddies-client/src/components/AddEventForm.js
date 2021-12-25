@@ -1,7 +1,9 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { UserContext } from "../context/user-context";
 import EventType from "./EventType";
 
-export default function AddEventForm({ isOpen, setIsOpen }) {
+export default function AddEventForm({ isOpen, setIsOpen, location }) {
+  const { user } = useContext(UserContext);
   const [formEventType, setFormEventType] = useState();
   const [eventTypes, setEventTypes] = useState([
     { type: "party", isSelected: false },
@@ -11,6 +13,9 @@ export default function AddEventForm({ isOpen, setIsOpen }) {
     { type: "walk", isSelected: false },
     { type: "sport", isSelected: false },
   ]);
+
+  const [title, setTitle] = useState("");
+  const [date, setDate] = useState("");
 
   const getIndex = (arr, element) => {
     return arr.indexOf(element);
@@ -69,12 +74,28 @@ export default function AddEventForm({ isOpen, setIsOpen }) {
             );
           })}
         </div>
+        <input
+          type="text"
+          placeholder="Title"
+          value={title}
+          onChange={(event) => {
+            setTitle(event.target.value);
+          }}
+          className="bg-gray-200 px-3 py-1 rounded mt-3 w-2/3"
+        ></input>
 
         <input
           type="text"
           placeholder="Date"
+          value={date}
+          onChange={(event) => {
+            setDate(event.target.value);
+          }}
           className="bg-gray-200 px-3 py-1 rounded mt-3 w-2/3"
         ></input>
+        <button className="bg-blue-500 mt-5 px-3 py-2 text-white font-bold rounded hover:bg-blue-400">
+          Create Event
+        </button>
       </div>
     </div>
   );

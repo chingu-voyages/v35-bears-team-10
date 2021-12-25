@@ -150,7 +150,7 @@ export default function Map() {
   return (
     <div className="relative flex flex-col justify-center items-center">
       {!isOpen && <MapHeader handleDropPin={handleDropPin} />}
-      <AddEventForm isOpen={isOpen} setIsOpen={setIsOpen} />
+      <AddEventForm isOpen={isOpen} setIsOpen={setIsOpen} location={marker} />
       <MapGL
         ref={mapRef}
         {...viewport}
