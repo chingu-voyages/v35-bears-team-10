@@ -1,7 +1,9 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../context/user-context";
+import { toast } from "react-toastify";
 import DatePicker from "react-datepicker";
 import EventType from "./EventType";
+import axios from "axios";
 
 export default function AddEventForm({ isOpen, setIsOpen, location }) {
   const { user } = useContext(UserContext);
@@ -20,6 +22,25 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
 
   const getIndex = (arr, element) => {
     return arr.indexOf(element);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:8000/api/events", {
+        name: title,
+        date: date,
+        location: [location.latitude, location.longitude],
+        activity: formEventType,
+        userId: user._id,
+      })
+      .then((response) => {
+        toast.success("Event added successfully!");
+        setIsOpen(false);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   };
 
   const handleClick = (type) => {
@@ -92,7 +113,10 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
             className="bg-gray-200 px-3 py-1 rounded mt-3 w-full"
           />
         </div>
-        <button className="bg-blue-500 mt-5 px-3 py-2 text-white font-bold rounded hover:bg-blue-400">
+        <button
+          onClick={handleSubmit}
+          className="bg-blue-500 mt-5 px-3 py-2 text-white font-bold rounded hover:bg-blue-400"
+        >
           Create Event
         </button>
       </div>
