@@ -1,5 +1,6 @@
 import { useState, useContext } from "react";
 import { UserContext } from "../context/user-context";
+import DatePicker from "react-datepicker";
 import EventType from "./EventType";
 
 export default function AddEventForm({ isOpen, setIsOpen, location }) {
@@ -15,7 +16,7 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
   ]);
 
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState("");
+  const [date, setDate] = useState(new Date());
 
   const getIndex = (arr, element) => {
     return arr.indexOf(element);
@@ -84,15 +85,13 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
           className="bg-gray-200 px-3 py-1 rounded mt-3 w-2/3"
         ></input>
 
-        <input
-          type="text"
-          placeholder="Date"
-          value={date}
-          onChange={(event) => {
-            setDate(event.target.value);
-          }}
-          className="bg-gray-200 px-3 py-1 rounded mt-3 w-2/3"
-        ></input>
+        <div className="w-2/3">
+          <DatePicker
+            selected={date}
+            onChange={(date) => setDate(date)}
+            className="bg-gray-200 px-3 py-1 rounded mt-3 w-full"
+          />
+        </div>
         <button className="bg-blue-500 mt-5 px-3 py-2 text-white font-bold rounded hover:bg-blue-400">
           Create Event
         </button>
