@@ -18,7 +18,21 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
   ]);
 
   const [title, setTitle] = useState("");
-  const [date, setDate] = useState(new Date());
+  const [date, setDate] = useState();
+
+  const setDefaults = () => {
+    setTitle("");
+    setDate();
+    setFormEventType();
+    setEventTypes([
+      { type: "party", isSelected: false },
+      { type: "drink", isSelected: false },
+      { type: "coffee", isSelected: false },
+      { type: "talk", isSelected: false },
+      { type: "walk", isSelected: false },
+      { type: "sport", isSelected: false },
+    ]);
+  };
 
   const getIndex = (arr, element) => {
     return arr.indexOf(element);
@@ -37,10 +51,18 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
       .then((response) => {
         toast.success("Event added successfully!");
         setIsOpen(false);
+        setDefaults();
       })
       .catch((error) => {
-        console.log(error);
+        toast.error("Unknown error occurred! Please try again.");
       });
+  };
+
+  const filterPassedTime = (time) => {
+    const currentDate = new Date();
+    const selectedDate = new Date(time);
+
+    return currentDate.getTime() < selectedDate.getTime();
   };
 
   const handleClick = (type) => {
@@ -73,6 +95,7 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
             fill="currentColor"
             onClick={() => {
               setIsOpen(false);
+              setDefaults();
             }}
           >
             <path
@@ -111,6 +134,11 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
             selected={date}
             onChange={(date) => setDate(date)}
             className="bg-gray-200 px-3 py-1 rounded mt-3 w-full"
+            showTimeSelect
+            placeholderText="Date and Time"
+            dateFormat="MMMM d, yyyy h:mm aa"
+            minDate={new Date()}
+            filterTime={filterPassedTime}
           />
         </div>
         <button
