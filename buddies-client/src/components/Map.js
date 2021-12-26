@@ -7,6 +7,7 @@ import Pin from "./Pin";
 import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import MapHeader from "./MapHeader";
 import AddEventForm from "./AddEventForm";
+import EventPopup from "./EventPopup";
 
 const eventMarkers = [
   {
@@ -190,22 +191,7 @@ export default function Map() {
           auto
         />
         {showPopup && (
-          <Popup
-            latitude={currentEvent.location[1]}
-            longitude={currentEvent.location[0]}
-            closeButton={true}
-            closeOnClick={false}
-            onClose={() => togglePopup(false)}
-            offsetTop={-20}
-            offsetLeft={10}
-            className="flex rounded-md z-10"
-          >
-            <div className="mt-3">
-              <p className="">{currentEvent.name}</p>
-              <p>{currentEvent.date}</p>
-              <p>{currentEvent.activity}</p>
-            </div>
-          </Popup>
+          <EventPopup currentEvent={currentEvent} togglePopup={togglePopup} />
         )}
         {showEventPinDropPopup && (
           <Popup
