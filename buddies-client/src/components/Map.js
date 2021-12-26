@@ -129,6 +129,8 @@ export default function Map() {
           key={event.name}
           longitude={event.location[0]}
           latitude={event.location[1]}
+          offsetTop={-20}
+          offsetLeft={-10}
           className="z-0 bg-blue-300 flex justify-center items-center px-2 py-2 rounded-full border-2 border-black"
         >
           <img
@@ -194,11 +196,12 @@ export default function Map() {
             closeButton={true}
             closeOnClick={false}
             onClose={() => togglePopup(false)}
-            offsetTop={0}
-            className="z-10"
+            offsetTop={-20}
+            offsetLeft={10}
+            className="flex rounded-md z-10"
           >
-            <div>
-              <p>{currentEvent.name}</p>
+            <div className="mt-3">
+              <p className="">{currentEvent.name}</p>
               <p>{currentEvent.date}</p>
               <p>{currentEvent.activity}</p>
             </div>
@@ -213,7 +216,7 @@ export default function Map() {
             onClose={() => setShowEventPinDropPopup(false)}
             offsetTop={-20}
             offsetLeft={10}
-            className="flex rounded-md z-10"
+            className="flex rounded-md z-20"
           >
             <div className="mt-3">
               <p className="font-bold">Confirm event location?</p>

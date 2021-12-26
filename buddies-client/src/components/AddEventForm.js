@@ -83,7 +83,7 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
 
   return (
     <div
-      className="z-10 absolute w-full md:w-1/3 px-3 py-4 flex flex-col justify-center items-center"
+      className="z-20 absolute w-full md:w-1/3 px-3 py-4 flex flex-col justify-center items-center"
       style={{ display: !isOpen && "none" }}
     >
       <div className="px-3 py-4 bg-yellow-300 w-full flex flex-col justify-center items-center rounded">
