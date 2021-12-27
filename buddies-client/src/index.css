@@ -47,4 +47,5 @@ code {
 
 .mapboxgl-popup-content {
   border-radius: 10px;
+  box-shadow: 7px 7px 5px grey;
 }
