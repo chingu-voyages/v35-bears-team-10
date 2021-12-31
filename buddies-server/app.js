@@ -12,7 +12,25 @@ const authRoute = require("./routes/auth");
 const eventRoute = require("./routes/event")
 const cors=require("cors");
 const bodyParser = require("body-parser")
-const yup = require("yup")
+const imageModel = require("./models/Image");
+
+const multer = require("multer");
+
+
+var storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, 'uploads')
+  },
+  filename: function (req, file, cb) {
+    cb(null, file.fieldname + '-' + Date.now())
+  }
+})
+
+var upload = multer({ storage: storage })
+
+
+
+
 dotenv.config();
 
 mongoose.connect(
