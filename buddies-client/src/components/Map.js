@@ -72,6 +72,7 @@ export default function Map() {
 
   const [showPopup, togglePopup] = useState(false);
   const [showEventPinDropPopup, setShowEventPinDropPopup] = useState(false);
+  const [showToolTip, setShowToolTip] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(null);
 
   const handleViewportChange = useCallback(
@@ -121,6 +122,7 @@ export default function Map() {
       latitude: viewport.latitude,
     });
     setShowEventPinDropPopup(false);
+    togglePopup(false);
   };
 
   const markers = useMemo(
