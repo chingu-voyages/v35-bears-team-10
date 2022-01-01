@@ -54,12 +54,11 @@ router.get("/:id", async (req, res) => {
     res.status(500).json(err);
   }
 });
-// get Event
-router.get("/:id", async (req, res) => {
+// get Events
+router.get("/", async (req, res) => {
   try {
-    const event = await Event.findById(req.params.id);
-    const { password, updatedAt, ...other } = event._doc;
-    res.status(200).json(other);
+    const events = await Event.find();
+    res.status(200).json(events);
   } catch (err) {
     res.status(500).json(err);
   }
