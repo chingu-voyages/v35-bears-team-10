@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useCallback } from "react";
+import { useState, useMemo, useRef, useCallback, useEffect } from "react";
 import MapGL, { GeolocateControl, Marker, Popup } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 
@@ -8,6 +8,7 @@ import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import MapHeader from "./MapHeader";
 import AddEventForm from "./AddEventForm";
 import EventPopup from "./EventPopup";
+import axios from "axios";
 
 const eventMarkers = [
   {
@@ -70,9 +71,10 @@ export default function Map() {
 
   const [isOpen, setIsOpen] = useState(false);
 
+  const [allEvents, setAllEvents] = useState([]);
+
   const [showPopup, togglePopup] = useState(false);
   const [showEventPinDropPopup, setShowEventPinDropPopup] = useState(false);
-  const [showToolTip, setShowToolTip] = useState(false);
   const [currentEvent, setCurrentEvent] = useState(null);
 
   const handleViewportChange = useCallback(
@@ -125,9 +127,20 @@ export default function Map() {
     togglePopup(false);
   };
 
+  useEffect(() => {
+    axios
+      .get("http://localhost:8000/api/events")
+      .then((response) => {
+        setAllEvents(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  }, []);
+
   const markers = useMemo(
     () =>
-      eventMarkers.map((event) => (
+      allEvents.map((event) => (
         <Marker
           key={event.name}
           longitude={event.location[0]}
