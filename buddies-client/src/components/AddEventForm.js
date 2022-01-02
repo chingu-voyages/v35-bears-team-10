@@ -5,7 +5,12 @@ import DatePicker from "react-datepicker";
 import EventType from "./EventType";
 import axios from "axios";
 
-export default function AddEventForm({ isOpen, setIsOpen, location }) {
+export default function AddEventForm({
+  isOpen,
+  setIsOpen,
+  location,
+  setEventMarkers,
+}) {
   const { user } = useContext(UserContext);
   const [formEventType, setFormEventType] = useState();
   const [eventTypes, setEventTypes] = useState([
@@ -50,11 +55,13 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
       })
       .then((response) => {
         toast.success("Event added successfully!");
+        setEventMarkers((prev) => {
+          return [...prev, response.data];
+        });
         setIsOpen(false);
         setDefaults();
       })
       .catch((error) => {
-        console.log(error);
         toast.error("Unknown error occurred! Please try again.");
       });
   };
