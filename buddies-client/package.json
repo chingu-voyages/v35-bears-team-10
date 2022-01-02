@@ -21,6 +21,7 @@
     "history": "^5.1.0",
     "joi": "^17.4.2",
     "mapbox-gl": "^2.6.1",
+    "moment": "^2.29.1",
     "popper.js": "^1.16.1",
     "react": "^17.0.2",
     "react-datepicker": "^4.5.0",

@@ -1,4 +1,5 @@
 import { Popup } from "react-map-gl";
+import moment from "moment";
 import TalkImg from "../images/talk.png";
 
 export default function EventPopup({ currentEvent, togglePopup }) {
@@ -29,7 +30,7 @@ export default function EventPopup({ currentEvent, togglePopup }) {
         </div>
         <hr className="mt-1 border-solid border-black"></hr>
         <div className="mt-1 text-center">
-          <p>{currentEvent.date}</p>
+          <p>{moment(currentEvent.date).format("DD-MMM-YYYY h:mm A")}</p>
           <p>{currentEvent.activity}</p>
         </div>
         <div className="flex justify-between text-2xl text-blue-500">
