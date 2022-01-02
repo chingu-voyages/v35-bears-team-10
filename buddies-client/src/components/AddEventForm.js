@@ -14,7 +14,7 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
     { type: "coffee", isSelected: false },
     { type: "talk", isSelected: false },
     { type: "walk", isSelected: false },
-    { type: "sport", isSelected: false },
+    { type: "sports", isSelected: false },
   ]);
 
   const [title, setTitle] = useState("");
@@ -30,7 +30,7 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
       { type: "coffee", isSelected: false },
       { type: "talk", isSelected: false },
       { type: "walk", isSelected: false },
-      { type: "sport", isSelected: false },
+      { type: "sports", isSelected: false },
     ]);
   };
 
@@ -54,6 +54,7 @@ export default function AddEventForm({ isOpen, setIsOpen, location }) {
         setDefaults();
       })
       .catch((error) => {
+        console.log(error);
         toast.error("Unknown error occurred! Please try again.");
       });
   };

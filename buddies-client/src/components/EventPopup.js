@@ -33,7 +33,7 @@ export default function EventPopup({ currentEvent, togglePopup }) {
           <p>{currentEvent.activity}</p>
         </div>
         <div className="flex justify-between text-2xl text-blue-500">
-          <i class="fas fa-user-friends relative">
+          <i className="fas fa-user-friends relative">
             <div className="absolute bottom-4 left-5 font-sans w-5 h-5 rounded-full bg-red-500 text-white text-xs flex justify-center items-center px-1 py-1">
               13
             </div>

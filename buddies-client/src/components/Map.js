@@ -136,7 +136,7 @@ export default function Map() {
     () =>
       eventMarkers.map((event) => (
         <Marker
-          key={event.name}
+          key={event._id}
           longitude={event.location[1]}
           latitude={event.location[0]}
           offsetTop={-20}
