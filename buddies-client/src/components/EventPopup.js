@@ -1,8 +1,27 @@
+import { useState, useEffect } from "react";
 import { Popup } from "react-map-gl";
 import moment from "moment";
 import TalkImg from "../images/talk.png";
+import axios from "axios";
 
 export default function EventPopup({ currentEvent, togglePopup }) {
+  const [eventOwner, setEventOwner] = useState(null);
+
+  const getEventOwner = (currentEvent) => {
+    axios
+      .get(`http://localhost:8000/api/users/${currentEvent.userId}`)
+      .then((response) => {
+        setEventOwner(response.data);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
+
+  useEffect(() => {
+    getEventOwner(currentEvent);
+  }, [currentEvent]);
+
   return (
     <Popup
       latitude={currentEvent.location[0]}
@@ -22,10 +41,16 @@ export default function EventPopup({ currentEvent, togglePopup }) {
               alt="talk"
               className="w-10 h-10 rounded-full border-blue-400 border-2"
             />
-            <p className="text-sm text-center mt-1 font-bold">John</p>
+            {eventOwner && (
+              <p className="text-sm text-center mt-1 font-bold capitalize">
+                {eventOwner.username}
+              </p>
+            )}
           </div>
           <div className="w-3/4">
-            <p className="font-bold text-lg text-center">{currentEvent.name}</p>
+            <p className="font-bold text-lg text-center capitalize">
+              {currentEvent.name}
+            </p>
           </div>
         </div>
         <hr className="mt-1 border-solid border-black"></hr>
