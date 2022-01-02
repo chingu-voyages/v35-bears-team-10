@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useCallback, useEffect } from "react";
-import MapGL, { GeolocateControl, Marker, Popup } from "react-map-gl";
+import MapGL, { GeolocateControl, Marker } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
 import axios from "axios";
 
@@ -9,6 +9,7 @@ import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import MapHeader from "./MapHeader";
 import AddEventForm from "./AddEventForm";
 import EventPopup from "./EventPopup";
+import EventAddPopup from "./EventAddPopup";
 
 const geolocateControlStyle = {
   right: 10,
@@ -163,39 +164,11 @@ export default function Map() {
           <EventPopup currentEvent={currentEvent} togglePopup={togglePopup} />
         )}
         {showEventPinDropPopup && (
-          <Popup
-            latitude={marker.latitude}
-            longitude={marker.longitude}
-            closeButton={false}
-            closeOnClick={false}
-            onClose={() => setShowEventPinDropPopup(false)}
-            offsetTop={-20}
-            offsetLeft={10}
-            className="flex rounded-md z-20"
-          >
-            <div className="mt-3">
-              <p className="font-bold">Confirm event location?</p>
-              <div className="flex justify-around mt-3">
-                <button
-                  className="bg-blue-400 px-2 py-1 text-white font-bold rounded"
-                  onClick={() => {
-                    setIsOpen(true);
-                    setShowEventPinDropPopup(false);
-                  }}
-                >
-                  YES
-                </button>
-                <button
-                  onClick={() => {
-                    setShowEventPinDropPopup(false);
-                  }}
-                  className="bg-red-400 px-2 py-1 text-white font-bold rounded"
-                >
-                  DISMISS
-                </button>
-              </div>
-            </div>
-          </Popup>
+          <EventAddPopup
+            marker={marker}
+            setShowEventPinDropPopup={setShowEventPinDropPopup}
+            setIsOpen={setIsOpen}
+          />
         )}
         {markers}
       </MapGL>
