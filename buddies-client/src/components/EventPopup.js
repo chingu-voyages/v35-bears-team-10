@@ -4,8 +4,8 @@ import TalkImg from "../images/talk.png";
 export default function EventPopup({ currentEvent, togglePopup }) {
   return (
     <Popup
-      latitude={currentEvent.location[1]}
-      longitude={currentEvent.location[0]}
+      latitude={currentEvent.location[0]}
+      longitude={currentEvent.location[1]}
       closeButton={false}
       closeOnClick={true}
       onClose={() => togglePopup(false)}

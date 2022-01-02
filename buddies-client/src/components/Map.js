@@ -1,6 +1,7 @@
 import { useState, useMemo, useRef, useCallback, useEffect } from "react";
 import MapGL, { GeolocateControl, Marker, Popup } from "react-map-gl";
 import Geocoder from "react-map-gl-geocoder";
+import axios from "axios";
 
 import Pin from "./Pin";
 
@@ -8,52 +9,51 @@ import "react-map-gl-geocoder/dist/mapbox-gl-geocoder.css";
 import MapHeader from "./MapHeader";
 import AddEventForm from "./AddEventForm";
 import EventPopup from "./EventPopup";
-import axios from "axios";
 
-const eventMarkers = [
-  {
-    name: "Event 1",
-    date: "2021-12-31",
-    location: [80.4039, 6.6886],
-    activity: "party",
-    userId: "1",
-  },
-  {
-    name: "Event 2",
-    date: "2021-12-31",
-    location: [81.4039, 6.6886],
-    activity: "drink",
-    userId: "1",
-  },
-  {
-    name: "Event 3",
-    date: "2021-12-31",
-    location: [80.4039, 7.6886],
-    activity: "coffee",
-    userId: "1",
-  },
-  {
-    name: "Event 4",
-    date: "2021-12-31",
-    location: [80.4139, 7.7886],
-    activity: "talk",
-    userId: "1",
-  },
-  {
-    name: "Event 5",
-    date: "2021-12-31",
-    location: [80.4049, 7.4886],
-    activity: "walk",
-    userId: "1",
-  },
-  {
-    name: "Event 6",
-    date: "2021-12-31",
-    location: [80.5039, 7.3886],
-    activity: "sport",
-    userId: "1",
-  },
-];
+// const eventMarkers = [
+//   {
+//     name: "Event 1",
+//     date: "2021-12-31",
+//     location: [80.4039, 6.6886],
+//     activity: "party",
+//     userId: "1",
+//   },
+//   {
+//     name: "Event 2",
+//     date: "2021-12-31",
+//     location: [81.4039, 6.6886],
+//     activity: "drink",
+//     userId: "1",
+//   },
+//   {
+//     name: "Event 3",
+//     date: "2021-12-31",
+//     location: [80.4039, 7.6886],
+//     activity: "coffee",
+//     userId: "1",
+//   },
+//   {
+//     name: "Event 4",
+//     date: "2021-12-31",
+//     location: [80.4139, 7.7886],
+//     activity: "talk",
+//     userId: "1",
+//   },
+//   {
+//     name: "Event 5",
+//     date: "2021-12-31",
+//     location: [80.4049, 7.4886],
+//     activity: "walk",
+//     userId: "1",
+//   },
+//   {
+//     name: "Event 6",
+//     date: "2021-12-31",
+//     location: [80.5039, 7.3886],
+//     activity: "sport",
+//     userId: "1",
+//   },
+// ];
 
 const geolocateControlStyle = {
   right: 10,
@@ -70,8 +70,7 @@ export default function Map() {
   const mapRef = useRef();
 
   const [isOpen, setIsOpen] = useState(false);
-
-  const [allEvents, setAllEvents] = useState([]);
+  const [eventMarkers, setEventMarkers] = useState([]);
 
   const [showPopup, togglePopup] = useState(false);
   const [showEventPinDropPopup, setShowEventPinDropPopup] = useState(false);
@@ -128,23 +127,18 @@ export default function Map() {
   };
 
   useEffect(() => {
-    axios
-      .get("http://localhost:8000/api/events")
-      .then((response) => {
-        setAllEvents(response.data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    axios.get("http://localhost:8000/api/events").then((response) => {
+      setEventMarkers(response.data);
+    });
   }, []);
 
   const markers = useMemo(
     () =>
-      allEvents.map((event) => (
+      eventMarkers.map((event) => (
         <Marker
           key={event.name}
-          longitude={event.location[0]}
-          latitude={event.location[1]}
+          longitude={event.location[1]}
+          latitude={event.location[0]}
           offsetTop={-20}
           offsetLeft={-10}
           className="z-0 bg-blue-300 flex justify-center items-center px-2 py-2 rounded-full border-2 border-black"
@@ -162,7 +156,7 @@ export default function Map() {
         </Marker>
       )),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [events]
+    [eventMarkers]
   );
 
   return (
