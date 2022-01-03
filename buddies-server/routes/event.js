@@ -28,6 +28,19 @@ router.put("/:id", async (req, res) => {
   }
 });
 
+// join event
+router.put("/join/:id", async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+    const user = req.body.user;
+    event.guests.push(user);
+    await event.updateOne({ $set: event });
+    res.status(200).json(event);
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // delet event
 router.delete("/:id", async (req, res) => {
   try {
