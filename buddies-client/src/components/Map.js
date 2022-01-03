@@ -30,7 +30,7 @@ export default function Map() {
 
   const [showPopup, togglePopup] = useState(false);
   const [showEventPinDropPopup, setShowEventPinDropPopup] = useState(false);
-  const [currentEvent, setCurrentEvent] = useState(null);
+  const [currentEventId, setCurrentEventId] = useState(null);
 
   const handleViewportChange = useCallback(
     (newViewport) => setViewPort(newViewport),
@@ -105,7 +105,7 @@ export default function Map() {
             width="30px"
             height="30px"
             onClick={() => {
-              setCurrentEvent(event);
+              setCurrentEventId(event._id);
               togglePopup(true);
             }}
           />
@@ -161,7 +161,10 @@ export default function Map() {
           auto
         />
         {showPopup && (
-          <EventPopup currentEvent={currentEvent} togglePopup={togglePopup} />
+          <EventPopup
+            currentEventId={currentEventId}
+            togglePopup={togglePopup}
+          />
         )}
         {showEventPinDropPopup && (
           <EventAddPopup
