@@ -29,6 +29,8 @@ export default function Map() {
   const [isOpen, setIsOpen] = useState(false);
   const [eventMarkers, setEventMarkers] = useState([]);
 
+  const [showPin, setShowPin] = useState(false);
+
   const [showPopup, togglePopup] = useState(false);
   const [showEventPinDropPopup, setShowEventPinDropPopup] = useState(false);
   const [currentEventId, setCurrentEventId] = useState(null);
@@ -80,6 +82,7 @@ export default function Map() {
       latitude: viewport.latitude,
     });
     setShowEventPinDropPopup(false);
+    setShowPin(true);
     togglePopup(false);
   };
 
@@ -124,6 +127,7 @@ export default function Map() {
         setIsOpen={setIsOpen}
         location={marker}
         setEventMarkers={setEventMarkers}
+        setShowPin={setShowPin}
       />
       <MapGL
         ref={mapRef}
@@ -140,6 +144,7 @@ export default function Map() {
             onMarkerDrag={onMarkerDrag}
             onMarkerDragStart={onMarkerDragStart}
             onMarkerDragEnd={onMarkerDragEnd}
+            showPin={showPin}
           />
         )}
         <Geocoder

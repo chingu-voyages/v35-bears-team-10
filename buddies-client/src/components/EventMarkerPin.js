@@ -6,6 +6,7 @@ export default function EventMarkerPin({
   onMarkerDrag,
   onMarkerDragStart,
   onMarkerDragEnd,
+  showPin,
 }) {
   return (
     <Marker
@@ -17,7 +18,7 @@ export default function EventMarkerPin({
       onDragStart={onMarkerDragStart}
       onDrag={onMarkerDrag}
       onDragEnd={onMarkerDragEnd}
-      className="z-10"
+      className={`z-10 ${!showPin && "hidden"}`}
     >
       <Pin size={30} />
     </Marker>

@@ -10,6 +10,7 @@ export default function AddEventForm({
   setIsOpen,
   location,
   setEventMarkers,
+  setShowPin,
 }) {
   const { user } = useContext(UserContext);
   const [formEventType, setFormEventType] = useState();
@@ -59,6 +60,7 @@ export default function AddEventForm({
           return [...prev, response.data];
         });
         setIsOpen(false);
+        setShowPin(false);
         setDefaults();
       })
       .catch((error) => {
