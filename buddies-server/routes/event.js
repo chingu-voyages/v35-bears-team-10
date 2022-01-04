@@ -32,10 +32,14 @@ router.put("/:id", async (req, res) => {
 router.put("/join/:id", async (req, res) => {
   try {
     const event = await Event.findById(req.params.id);
-    const user = req.body.user;
-    event.guests.push(user);
-    await event.updateOne({ $set: event });
-    res.status(200).json(event);
+    const userId = req.body.user._id;
+    if (!event.guests.includes(userId)) {
+      event.guests.push(userId);
+      await event.updateOne({ $set: event });
+      res.status(200).json(event);
+    } else {
+      res.status(403).json("You are already attending this event");
+    }
   } catch (err) {
     res.status(500).json(err);
   }
