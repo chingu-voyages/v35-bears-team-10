@@ -43,8 +43,8 @@ export default function EventPopup({ currentEventId, togglePopup }) {
         setEventData(response.data);
         toast.success("You joined the event!");
       })
-      .catch((error) => {
-        console.log(error);
+      .catch(({ response }) => {
+        toast.error(response.data);
       });
   };
 
