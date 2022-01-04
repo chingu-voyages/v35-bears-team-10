@@ -45,6 +45,24 @@ router.put("/join/:id", async (req, res) => {
   }
 });
 
+// leave event
+
+router.put("/leave/:id", async (req, res) => {
+  try {
+    const event = await Event.findById(req.params.id);
+    const userId = req.body.user._id;
+    if (event.guests.includes(userId)) {
+      event.guests.splice(event.guests.indexOf(userId), 1);
+      await event.updateOne({ $set: event });
+      res.status(200).json(event);
+    } else {
+      res.status(403).json("You have not joined this event!");
+    }
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 // delet event
 router.delete("/:id", async (req, res) => {
   try {
