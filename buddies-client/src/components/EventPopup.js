@@ -48,6 +48,20 @@ export default function EventPopup({ currentEventId, togglePopup }) {
       });
   };
 
+  const handleLeaveEvent = () => {
+    axios
+      .put(`http://localhost:8000/api/events/leave/${currentEventId}`, {
+        user: user,
+      })
+      .then((response) => {
+        setEventData(response.data);
+        toast.success("You left the event!");
+      })
+      .catch(({ response }) => {
+        toast.error(response.data);
+      });
+  };
+
   useEffect(() => {
     getEventData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -97,12 +111,21 @@ export default function EventPopup({ currentEventId, togglePopup }) {
                   {eventData.guests.length}
                 </div>
               </i>
-              <button
-                className="bg-blue-500 text-white text-sm rounded font-bold px-3 py-1"
-                onClick={handleJoinEvent}
-              >
-                Join
-              </button>
+              {eventData.guests.includes(user._id) ? (
+                <button
+                  className="bg-red-500 text-white text-sm rounded font-bold px-3 py-1"
+                  onClick={handleLeaveEvent}
+                >
+                  Leave
+                </button>
+              ) : (
+                <button
+                  className="bg-blue-500 text-white text-sm rounded font-bold px-3 py-1"
+                  onClick={handleJoinEvent}
+                >
+                  Join
+                </button>
+              )}
 
               <i className="fas fa-comments"></i>
             </div>
