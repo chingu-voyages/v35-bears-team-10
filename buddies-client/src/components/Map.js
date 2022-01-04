@@ -10,6 +10,7 @@ import MapHeader from "./MapHeader";
 import AddEventForm from "./AddEventForm";
 import EventPopup from "./EventPopup";
 import EventAddPopup from "./EventAddPopup";
+import EventMarkerPin from "./EventMarkerPin";
 
 const geolocateControlStyle = {
   right: 10,
@@ -134,19 +135,12 @@ export default function Map() {
         height="99vh"
       >
         {!isOpen && (
-          <Marker
-            longitude={marker.longitude}
-            latitude={marker.latitude}
-            offsetTop={-20}
-            offsetLeft={-10}
-            draggable
-            onDragStart={onMarkerDragStart}
-            onDrag={onMarkerDrag}
-            onDragEnd={onMarkerDragEnd}
-            className="z-10"
-          >
-            <Pin size={30} />
-          </Marker>
+          <EventMarkerPin
+            marker={marker}
+            onMarkerDrag={onMarkerDrag}
+            onMarkerDragStart={onMarkerDragStart}
+            onMarkerDragEnd={onMarkerDragEnd}
+          />
         )}
         <Geocoder
           mapRef={mapRef}
